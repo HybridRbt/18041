@@ -1,1 +1,4 @@
-*.ini
+
+AFF-600E-01/Objects/
+AFF-600E-01/Listings/
+*.hex
