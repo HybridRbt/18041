@@ -102,12 +102,13 @@ code unsigned char REV[]={0x04,0x06,0x02,0x0a,0x08,0x09,0x01,0x05};   //counter-
 void Timer0_ISR();
 int  Delay(unsigned int delay, unsigned int check);
 int  RollerHome(void);
-int  RollerUp(void);
 void ShutdownMotor(void);
 void StopMotor(void);
 void StartMotor(void);
 int  RelativeMove(int position, int speed, int accdec);
 int  AbsoluteMove(int position, int speed, int accdec);
+
+int IsBoatPlaced(void);
 
 /*-----------------------------------------------------------------------------
 Function: Timer0_ISR()
@@ -361,6 +362,23 @@ void StartMotor(void)
 }
 
 /*-----------------------------------------------------------------------------
+Function: IsBoatPlaced(void)
+------------------------------------------------------------------------------*/
+int IsBoatPlaced(void)
+{
+  // only used to start operation
+  if (!Boat_Switch) {
+    Delay(1000, 0); // delay 100ms 
+
+    if (!Boat_Switch) {
+      return 1;
+    }
+  }
+
+  return 0;
+}
+
+/*-----------------------------------------------------------------------------
 Function: RelativeMove(int position, int speed, int accdec)
 ------------------------------------------------------------------------------*/
 int RelativeMove(int position, int speed, int accdec)
@@ -567,7 +585,7 @@ void main(void)
 
     boat_flag = 0;
 
-    while(!Boat_Switch && !boat_flag)
+    while((IsBoatPlaced() == 1) && !boat_flag)
     {
       boat_flag = 1;
 
@@ -711,4 +729,3 @@ void main(void)
     }
   }
 }
-/*------------------------- end of AFF-600N-V3.C ------------------------------*/
