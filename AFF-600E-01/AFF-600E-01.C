@@ -55,8 +55,8 @@ sbit Flat_Position_Switch = P2^5;     //0 = trig
 #define NO_ERROR                 0    //good: no error happened
 #define ERROR                   -1
 
-#define CW                       0
-#define CCW                      1
+#define CW                       1
+#define CCW                      0
 
 unsigned int T0_count = 0;
 //unsigned int T1_count = 0;
