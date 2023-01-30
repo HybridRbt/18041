@@ -47,7 +47,7 @@ sbit Flat_Position_Switch = P2^5;     //0 = trig
 #define T0_time                  80
 #define T1_time                  50000
 #define POSITION_COUNT_PITCH     255
-#define POSITION_COUNT_06       -5
+#define POSITION_COUNT_06        -210
 #define ACCDECSTEPS              20   //0-20
 #define ADDSTEPS                 2
 #define TUNE_RATIO               20
